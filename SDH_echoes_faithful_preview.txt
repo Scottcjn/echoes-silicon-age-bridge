@@ -2,7 +2,7 @@
 
 002 [Normal] SCOTT J. BOUDREAUX, Elyan Labs, Louisiana, USA
 
-003 [SDH Body Text] Digital archaeology now faces a practical preservation problem: how to retain high-confidence human digital records as machine-generated media rapidly expands. This paper proposes a provenance-first framework, Silicon Stratigraphy, for preserving pre-LLM web and software artifacts while documenting post-LLM transformations. The framework combines established digital preservation standards (OAIS, Memento, PROV-O) with cryptographic timestamping and hardware-attested archival workflows. A live implementation is presented as a case study: RustChain Proof of Antiquity nodes and offline legacy compute environments used to capture, hash, timestamp, and replicate artifacts before and after synthetic augmentation. The contribution is methodological rather than universalizing: a reproducible protocol for separating source strata, recording transformation lineage, and reducing evidentiary ambiguity in future scholarship. The paper closes with validation criteria, governance risks, and recommendations for community-scale deployment in archaeology-adjacent digital heritage work.
+003 [SDH Body Text] Digital archaeology now faces a practical preservation problem: how to retain high-confidence human digital records as machine-generated media rapidly expands. This paper proposes a provenance-first framework, Silicon Stratigraphy, for preserving pre-LLM web and software artifacts while documenting post-LLM transformations. The framework combines established digital preservation standards (OAIS, Memento, PROV-O) with cryptographic timestamping and hardware-attested archival workflows. A live implementation is presented as a case study: RustChain Proof of Antiquity nodes and offline legacy compute environments used to capture, hash, timestamp, and replicate artifacts before and after synthetic augmentation. The contribution is methodological rather than universalizing: a reproducible protocol for separating source strata, recording transformation lineage, and reducing evidentiary ambiguity in future scholarship. The framework was developed through hands-on systems operations, repeated validation cycles, and preservation work on mixed legacy and modern infrastructure. The paper closes with validation criteria, governance risks, and recommendations for community-scale deployment in archaeology-adjacent digital heritage work.
 
 004 [SDH Keywords Title] Keywords:
 
@@ -18,13 +18,13 @@
 
 010 [SDH Body Text] Archaeology increasingly depends on digital evidence: web pages, repositories, discussion archives, and born-digital field documentation. At the same time, generative systems now produce large volumes of plausible text, images, and code. The resulting challenge is not only long-term storage but evidentiary trust: whether future researchers can distinguish original artifacts from later synthetic revisions, summaries, or reconstructions.
 
-011 [SDH Body Text] This paper addresses that challenge through a pragmatic question: how can digital heritage practitioners preserve pre-LLM artifacts and document post-LLM interventions without losing chain-of-custody clarity? Rather than treating AI as intrinsically harmful or beneficial, the paper frames it as a provenance pressure that requires better capture and attribution methods.
+011 [SDH Body Text] This paper addresses that challenge through a pragmatic question: how can digital heritage practitioners preserve pre-LLM artifacts and document post-LLM interventions without losing chain-of-custody clarity? Rather than treating AI as intrinsically harmful or beneficial, the paper frames it as a provenance pressure that requires better capture and attribution methods at the exact point where data are collected, transformed, and published.
 
 012 [SDH Body Text] The main contribution is a preservation framework called Silicon Stratigraphy. The framework adapts archaeological stratigraphic logic to digital corpora: (1) isolate temporal layers of artifact production, (2) preserve low-level evidence for each layer, and (3) register transformations with explicit lineage metadata. A field implementation is reported using a live attested ledger (RustChain), web snapshot capture, and offline legacy compute environments.
 
 013 [SDH Title 1] BACKGROUND AND RELATED STANDARDS
 
-014 [SDH Body Text] The framework builds on existing preservation and provenance standards rather than replacing them.
+014 [SDH Body Text] The framework builds on existing preservation and provenance standards rather than replacing them. The goal is interoperability with existing archaeological digital practice, not a parallel process.
 
 015 [SDH Title 2] OAIS Model
 
@@ -50,7 +50,7 @@
 
 026 [SDH Title 2] Layer Taxonomy
 
-027 [SDH Body Text] The taxonomy is intentionally operational and can be adjusted by project:
+027 [SDH Body Text] The taxonomy is intentionally operational, field-usable, and adjustable by project:
 
 028 [SDH Body Text] 1. Analog Bedrock: paper records, magnetic media, and non-networked digital artifacts.
 
@@ -80,29 +80,29 @@
 
 041 [SDH Body Text] The capture and verification protocol follows six stages:
 
-042 [SDH Body Text] Acquire: capture web/resource snapshot with metadata (URL, datetime, headers, toolchain).
+042 [SDH Body Text] Acquire: capture web/resource snapshots with full context metadata (URL, datetime, headers, toolchain).
 
-043 [SDH Body Text] Fixity: compute SHA-256 and perform size/MIME checks.
+043 [SDH Body Text] Fixity: compute SHA-256 and perform size/MIME checks before any derivative generation.
 
-044 [SDH Body Text] Anchor: write digest plus metadata pointer to an attested ledger.
+044 [SDH Body Text] Anchor: write digest plus metadata pointer to an attested ledger event.
 
 045 [SDH Body Text] Replicate: store in at least two independent repositories (online plus offline).
 
-046 [SDH Body Text] Transform: if a derivative is generated, record model/tool/prompt/version and parent hash.
+046 [SDH Body Text] Transform: for every generated derivative, record model/tool/prompt/version and parent hash.
 
-047 [SDH Body Text] Audit: run periodic fixity and retrievability checks with exception logging.
+047 [SDH Body Text] Audit: run scheduled fixity and retrievability checks with exception logging and remediation notes.
 
 048 [SDH Title 1] CASE STUDY: LIVE IMPLEMENTATION
 
 049 [SDH Title 2] Infrastructure
 
-050 [SDH Body Text] A working implementation was evaluated in an operational environment at Elyan Labs. The system includes: (1) a lightweight ledger (RustChain) for timestamp anchoring and audit events; (2) legacy and modern nodes (including PowerPC, POWER8, Apple Silicon, and x86) used for diversity of execution contexts; and (3) offline archival snapshots for selected web corpora.
+050 [SDH Body Text] A working implementation was evaluated in an operational environment at Elyan Labs. The system includes: (1) a lightweight ledger (RustChain) for timestamp anchoring and audit events; (2) legacy and modern nodes (including PowerPC, POWER8, Apple Silicon, and x86) used for diversity of execution contexts; and (3) offline archival snapshots for selected web corpora. The implementation emphasis is practical reproducibility under mixed hardware constraints, not benchmark optimization.
 
 051 [SDH Body Text] At the time of observation (February 11, 2026), live node telemetry exposed active miner enrollment and epoch data through public API endpoints. These values are reported here as environment state, not as universal performance claims.
 
 052 [SDH Title 2] Why Hardware-Attested Contexts Were Included
 
-053 [SDH Body Text] Digital forensics and emulation studies show that execution context affects reproducibility and interpretation (Digital Preservation Coalition n.d.). In this implementation, legacy hardware was used for two reasons: (1) to document historically plausible runtime constraints for replay and emulation; and (2) to diversify provenance evidence (clock sources, architecture, toolchain behavior) in signed archival events. The method does not claim that old hardware is inherently more truthful. The claim is narrower: explicit environment diversity improves auditability when recorded correctly.
+053 [SDH Body Text] Digital forensics and emulation studies show that execution context affects reproducibility and interpretation (Digital Preservation Coalition n.d.). In this implementation, legacy hardware was used for two reasons: (1) to document historically plausible runtime constraints for replay and emulation; and (2) to diversify provenance evidence (clock sources, architecture, toolchain behavior) in signed archival events. The method does not claim that old hardware is inherently more truthful. The claim is narrower: explicit environment diversity improves auditability when recorded correctly and repeatedly validated.
 
 054 [SDH Title 2] Applied Example Workflow
 
@@ -118,13 +118,13 @@
 
 060 [SDH Body Text] 5. Link each derivative to its parent hash with transformation metadata.
 
-061 [SDH Body Text] This keeps interpretive products useful while preventing them from silently replacing source evidence.
+061 [SDH Body Text] This keeps interpretive products useful while preventing them from silently replacing source evidence. In this workflow, derivative outputs are never treated as substitutes for source-layer records.
 
 063 [SDH Figure Caption] Figure 1. Conceptual diagrams used in the project: (top) digital stratigraphy layers, (middle) attested provenance flow, and (bottom) legacy compute zone constraints.
 
 064 [SDH Title 1] EVALUATION CRITERIA
 
-065 [SDH Body Text] This work is a methods paper; evaluation is therefore procedural. A deployment is considered successful when it meets the following criteria:
+065 [SDH Body Text] This work is a methods paper; evaluation is therefore procedural. A deployment is considered successful when it meets the following criteria and allows an external team to reconstruct the evidence path end-to-end:
 
 066 [SDH Body Text] 1. Recoverability: independent parties can retrieve the preserved object from at least one replica.
 
@@ -136,7 +136,7 @@
 
 070 [SDH Body Text] 5. Disclosure quality: interfaces clearly distinguish source artifacts from generated derivatives.
 
-071 [SDH Body Text] Future work should benchmark this framework against institutional repositories with controlled inter-rater studies on evidentiary confidence.
+071 [SDH Body Text] Future work should benchmark this framework against institutional repositories with controlled inter-rater studies on evidentiary confidence and blinded replication tasks.
 
 072 [SDH Title 1] LIMITATIONS
 
@@ -150,38 +150,40 @@
 
 077 [SDH Body Text] 4. Governance overhead: detailed provenance capture increases operational cost and may reduce adoption without tooling support.
 
-078 [SDH Title 1] GOVERNANCE AND ETHICS
+078 [SDH Body Text] 5. Case-study depth: this manuscript focuses on method and implementation; larger multi-site comparative studies remain future work.
 
-079 [SDH Body Text] Preservation systems can reproduce power asymmetries if access and authorship controls are opaque. Three governance rules are recommended: (1) publish provenance schemas and audit procedures openly; (2) require explicit labeling for generated derivatives in public interfaces; and (3) support community co-curation to reduce unilateral control of archival narratives. These rules align with AI ethics guidance emphasizing transparency, accountability, and contestability (UNESCO 2021; National Institute of Standards and Technology 2023).
+079 [SDH Title 1] GOVERNANCE AND ETHICS
 
-080 [SDH Title 1] CONCLUSION
+080 [SDH Body Text] Preservation systems can reproduce power asymmetries if access and authorship controls are opaque. Three governance rules are recommended: (1) publish provenance schemas and audit procedures openly; (2) require explicit labeling for generated derivatives in public interfaces; and (3) support community co-curation to reduce unilateral control of archival narratives. These rules align with AI ethics guidance emphasizing transparency, accountability, and contestability (UNESCO 2021; National Institute of Standards and Technology 2023).
 
-081 [SDH Body Text] The core risk in post-LLM digital archaeology is not generation itself but undocumented transformation. Silicon Stratigraphy offers a practical response: preserve source layers, anchor fixity, and make derivative lineage explicit. The case study demonstrates that a small organization can implement this approach with existing standards and modest infrastructure.
+081 [SDH Title 1] CONCLUSION
 
-082 [SDH Body Text] For archaeology and digital heritage communities, the immediate priority is methodological convergence: interoperable provenance records, shared audit practices, and clear public labeling. If these controls are adopted early, synthetic tools can enrich interpretation without eroding the evidentiary substrate that future scholarship depends on.
+082 [SDH Body Text] The core risk in post-LLM digital archaeology is not generation itself but undocumented transformation. Silicon Stratigraphy offers a practical response: preserve source layers, anchor fixity, and make derivative lineage explicit. The case study demonstrates that a small organization can implement this approach with existing standards and modest infrastructure and constrained operational conditions.
 
-083 [SDH Title 1] COMPETING INTERESTS
+083 [SDH Body Text] For archaeology and digital heritage communities, the immediate priority is methodological convergence: interoperable provenance records, shared audit practices, and clear public labeling. If these controls are adopted early, synthetic tools can enrich interpretation without eroding the evidentiary substrate that future scholarship depends on.
 
-084 [SDH Body Text] The author leads projects discussed in the case study (RustChain and related infrastructure). This paper is presented as a methods and implementation note; readers should interpret platform-specific observations accordingly.
+084 [SDH Title 1] COMPETING INTERESTS
 
-085 [SDH Title 1] DATA AND MATERIALS AVAILABILITY
+085 [SDH Body Text] The author leads projects discussed in the case study (RustChain and related infrastructure). This paper is presented as a methods and implementation note; readers should interpret platform-specific observations accordingly.
 
-086 [SDH Body Text] Example implementation artifacts are publicly visible in project repositories and live service endpoints at the time of writing. For archival integrity, timestamps and values should be re-queried by reviewers at evaluation time.
+086 [SDH Title 1] DATA AND MATERIALS AVAILABILITY
 
-087 [SDH Title 1] REFERENCES
+087 [SDH Body Text] Example implementation artifacts are publicly visible in project repositories and live service endpoints at the time of writing. For archival integrity, timestamps and values should be re-queried by reviewers at evaluation time.
 
-088 [SDH Reference] Consultative Committee for Space Data Systems. 2012. Reference Model for an Open Archival Information System (OAIS). CCSDS 650.0-M-2. https://public.ccsds.org/pubs/650x0m2.pdf.
+088 [SDH Title 1] REFERENCES
 
-089 [SDH Reference] Digital Preservation Coalition. n.d. Digital Preservation Handbook. Accessed February 11, 2026. https://www.dpconline.org/handbook.
+089 [SDH Reference] Consultative Committee for Space Data Systems. 2012. Reference Model for an Open Archival Information System (OAIS). CCSDS 650.0-M-2. https://public.ccsds.org/pubs/650x0m2.pdf.
 
-090 [SDH Reference] Kansa, Eric C. 2012. "Openness and Archaeology's Information Ecosystem." World Archaeology 44 (4): 498-520. https://doi.org/10.1080/00438243.2012.737575.
+090 [SDH Reference] Digital Preservation Coalition. n.d. Digital Preservation Handbook. Accessed February 11, 2026. https://www.dpconline.org/handbook.
 
-091 [SDH Reference] Lebo, Timothy, Satya Sahoo, and Deborah McGuinness, eds. 2013. PROV-O: The PROV Ontology. W3C Recommendation. https://www.w3.org/TR/prov-o/.
+091 [SDH Reference] Kansa, Eric C. 2012. "Openness and Archaeology's Information Ecosystem." World Archaeology 44 (4): 498-520. https://doi.org/10.1080/00438243.2012.737575.
 
-092 [SDH Reference] Marwick, Ben. 2017. "Computational Reproducibility in Archaeological Research: Basic Principles and a Case Study of Their Implementation." Journal of Archaeological Method and Theory 24: 424-450. https://doi.org/10.1007/s10816-015-9272-9.
+092 [SDH Reference] Lebo, Timothy, Satya Sahoo, and Deborah McGuinness, eds. 2013. PROV-O: The PROV Ontology. W3C Recommendation. https://www.w3.org/TR/prov-o/.
 
-093 [SDH Reference] National Institute of Standards and Technology. 2023. Artificial Intelligence Risk Management Framework (AI RMF 1.0). NIST AI 100-1. https://doi.org/10.6028/NIST.AI.100-1.
+093 [SDH Reference] Marwick, Ben. 2017. "Computational Reproducibility in Archaeological Research: Basic Principles and a Case Study of Their Implementation." Journal of Archaeological Method and Theory 24: 424-450. https://doi.org/10.1007/s10816-015-9272-9.
 
-094 [SDH Reference] UNESCO. 2021. Recommendation on the Ethics of Artificial Intelligence. https://unesdoc.unesco.org/ark:/48223/pf0000381137.
+094 [SDH Reference] National Institute of Standards and Technology. 2023. Artificial Intelligence Risk Management Framework (AI RMF 1.0). NIST AI 100-1. https://doi.org/10.6028/NIST.AI.100-1.
 
-095 [SDH Reference] Van de Sompel, Herbert, Michael L. Nelson, Robert Sanderson, Lyudmila Balakireva, Scott Ainsworth, and Harihar Shankar. 2013. RFC 7089: HTTP Framework for Time-Based Access to Resource States (Memento). IETF. https://www.rfc-editor.org/rfc/rfc7089.
+095 [SDH Reference] UNESCO. 2021. Recommendation on the Ethics of Artificial Intelligence. https://unesdoc.unesco.org/ark:/48223/pf0000381137.
+
+096 [SDH Reference] Van de Sompel, Herbert, Michael L. Nelson, Robert Sanderson, Lyudmila Balakireva, Scott Ainsworth, and Harihar Shankar. 2013. RFC 7089: HTTP Framework for Time-Based Access to Resource States (Memento). IETF. https://www.rfc-editor.org/rfc/rfc7089.

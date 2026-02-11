@@ -61,7 +61,9 @@ def main() -> None:
         'artifacts before and after synthetic augmentation. The contribution is methodological '
         'rather than universalizing: a reproducible protocol for separating source strata, '
         'recording transformation lineage, and reducing evidentiary ambiguity in future '
-        'scholarship. The paper closes with validation criteria, governance risks, and '
+        'scholarship. The framework was developed through hands-on systems operations, repeated '
+        'validation cycles, and preservation work on mixed legacy and modern infrastructure. '
+        'The paper closes with validation criteria, governance risks, and '
         'recommendations for community-scale deployment in archaeology-adjacent digital heritage work.'
     )
 
@@ -97,7 +99,8 @@ def main() -> None:
         'heritage practitioners preserve pre-LLM artifacts and document post-LLM interventions '
         'without losing chain-of-custody clarity? Rather than treating AI as intrinsically '
         'harmful or beneficial, the paper frames it as a provenance pressure that requires '
-        'better capture and attribution methods.'
+        'better capture and attribution methods at the exact point where data are collected, '
+        'transformed, and published.'
     )
     body(
         doc,
@@ -110,7 +113,12 @@ def main() -> None:
     )
 
     h1(doc, 'BACKGROUND AND RELATED STANDARDS')
-    body(doc, 'The framework builds on existing preservation and provenance standards rather than replacing them.')
+    body(
+        doc,
+        'The framework builds on existing preservation and provenance standards rather than '
+        'replacing them. The goal is interoperability with existing archaeological digital '
+        'practice, not a parallel process.'
+    )
 
     h2(doc, 'OAIS Model')
     body(
@@ -158,7 +166,7 @@ def main() -> None:
     )
 
     h2(doc, 'Layer Taxonomy')
-    body(doc, 'The taxonomy is intentionally operational and can be adjusted by project:')
+    body(doc, 'The taxonomy is intentionally operational, field-usable, and adjustable by project:')
     body(doc, '1. Analog Bedrock: paper records, magnetic media, and non-networked digital artifacts.')
     body(doc, '2. Early Network Layer: BBS/forum/web artifacts with low automation and identifiable human authorship patterns.')
     body(doc, '3. Pre-LLM Web Layer (baseline in this study: through 2022): high-volume human-authored web and open-source materials before broad public LLM deployment.')
@@ -175,12 +183,12 @@ def main() -> None:
 
     h2(doc, 'Pipeline')
     body(doc, 'The capture and verification protocol follows six stages:')
-    body(doc, 'Acquire: capture web/resource snapshot with metadata (URL, datetime, headers, toolchain).')
-    body(doc, 'Fixity: compute SHA-256 and perform size/MIME checks.')
-    body(doc, 'Anchor: write digest plus metadata pointer to an attested ledger.')
+    body(doc, 'Acquire: capture web/resource snapshots with full context metadata (URL, datetime, headers, toolchain).')
+    body(doc, 'Fixity: compute SHA-256 and perform size/MIME checks before any derivative generation.')
+    body(doc, 'Anchor: write digest plus metadata pointer to an attested ledger event.')
     body(doc, 'Replicate: store in at least two independent repositories (online plus offline).')
-    body(doc, 'Transform: if a derivative is generated, record model/tool/prompt/version and parent hash.')
-    body(doc, 'Audit: run periodic fixity and retrievability checks with exception logging.')
+    body(doc, 'Transform: for every generated derivative, record model/tool/prompt/version and parent hash.')
+    body(doc, 'Audit: run scheduled fixity and retrievability checks with exception logging and remediation notes.')
 
     h1(doc, 'CASE STUDY: LIVE IMPLEMENTATION')
 
@@ -191,7 +199,8 @@ def main() -> None:
         'The system includes: (1) a lightweight ledger (RustChain) for timestamp anchoring and '
         'audit events; (2) legacy and modern nodes (including PowerPC, POWER8, Apple Silicon, '
         'and x86) used for diversity of execution contexts; and (3) offline archival snapshots '
-        'for selected web corpora.'
+        'for selected web corpora. The implementation emphasis is practical reproducibility under '
+        'mixed hardware constraints, not benchmark optimization.'
     )
     body(
         doc,
@@ -210,7 +219,7 @@ def main() -> None:
         'and (2) to diversify provenance evidence (clock sources, architecture, toolchain '
         'behavior) in signed archival events. The method does not claim that old hardware is '
         'inherently more truthful. The claim is narrower: explicit environment diversity '
-        'improves auditability when recorded correctly.'
+        'improves auditability when recorded correctly and repeatedly validated.'
     )
 
     h2(doc, 'Applied Example Workflow')
@@ -220,7 +229,12 @@ def main() -> None:
     body(doc, '3. Publish digest and metadata pointer to the attested ledger.')
     body(doc, '4. Generate derivative summaries or modernized renderings as separate artifacts.')
     body(doc, '5. Link each derivative to its parent hash with transformation metadata.')
-    body(doc, 'This keeps interpretive products useful while preventing them from silently replacing source evidence.')
+    body(
+        doc,
+        'This keeps interpretive products useful while preventing them from silently replacing '
+        'source evidence. In this workflow, derivative outputs are never treated as substitutes '
+        'for source-layer records.'
+    )
 
     p = doc.add_paragraph(style='SDH Body Text')
     p.add_run().add_picture(str(FIGURE), width=Inches(5.7))
@@ -231,13 +245,22 @@ def main() -> None:
     )
 
     h1(doc, 'EVALUATION CRITERIA')
-    body(doc, 'This work is a methods paper; evaluation is therefore procedural. A deployment is considered successful when it meets the following criteria:')
+    body(
+        doc,
+        'This work is a methods paper; evaluation is therefore procedural. A deployment is '
+        'considered successful when it meets the following criteria and allows an external team '
+        'to reconstruct the evidence path end-to-end:'
+    )
     body(doc, '1. Recoverability: independent parties can retrieve the preserved object from at least one replica.')
     body(doc, '2. Fixity integrity: periodic hash checks produce no unexplained drift.')
     body(doc, '3. Lineage completeness: each derivative has explicit parent links and transformation metadata.')
     body(doc, '4. Temporal auditability: timestamp anchors and capture datetimes are consistent and externally inspectable.')
     body(doc, '5. Disclosure quality: interfaces clearly distinguish source artifacts from generated derivatives.')
-    body(doc, 'Future work should benchmark this framework against institutional repositories with controlled inter-rater studies on evidentiary confidence.')
+    body(
+        doc,
+        'Future work should benchmark this framework against institutional repositories with '
+        'controlled inter-rater studies on evidentiary confidence and blinded replication tasks.'
+    )
 
     h1(doc, 'LIMITATIONS')
     body(doc, 'The current implementation has several limitations:')
@@ -245,6 +268,7 @@ def main() -> None:
     body(doc, '2. No adversarial red-team trial in this paper: tampering and replay resistance require separate formal testing.')
     body(doc, '3. Boundary ambiguity: some 2022-2024 artifacts are hybrid human/machine products, making strict layer assignment difficult.')
     body(doc, '4. Governance overhead: detailed provenance capture increases operational cost and may reduce adoption without tooling support.')
+    body(doc, '5. Case-study depth: this manuscript focuses on method and implementation; larger multi-site comparative studies remain future work.')
 
     h1(doc, 'GOVERNANCE AND ETHICS')
     body(
@@ -265,7 +289,7 @@ def main() -> None:
         'transformation. Silicon Stratigraphy offers a practical response: preserve source layers, '
         'anchor fixity, and make derivative lineage explicit. The case study demonstrates that a '
         'small organization can implement this approach with existing standards and modest '
-        'infrastructure.'
+        'infrastructure and constrained operational conditions.'
     )
     body(
         doc,
