@@ -1,0 +1,17 @@
+Studies in Digital Heritage Submission Checklist (Prepared)
+
+1) The submission has not been previously published, nor is it under consideration by another journal.
+- Action: Confirm manually in submission form based on your actual submission status.
+
+2) The submission file is in MS Word and follows the SDH Template.
+- Provided file: Silicon_Stratigraphy_SDH_Submission.docx
+- Basis: Built directly from SDH_template_v19.docx using SDH styles.
+
+3) All references are mentioned in the paper and are ordered alphabetically according to the surname of the first author.
+- Status: Completed (alphabetical list in REFERENCES section).
+
+4) The citation style follows strictly the example mentioned in the template.
+- Status: Completed (Chicago author-date in-text format).
+
+5) Where available, URLs for the references are provided.
+- Status: Completed.
