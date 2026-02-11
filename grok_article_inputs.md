@@ -19,8 +19,8 @@ Preserve pre-LLM digital artifacts with explicit provenance and verifiable fixit
 - Payload template: rustchain/attest_payload.sample.json
 
 ## Public Links (fill after push)
-- GitHub repo URL:
-- GitHub commit URL:
+- GitHub repo URL: https://github.com/Scottcjn/echoes-silicon-age-bridge
+- GitHub commit URL: https://github.com/Scottcjn/echoes-silicon-age-bridge/commit/258daeebe1c187737900aff1fcc3d648d5f2eaf8
 
 ## Suggested Grok Post Angle
 A methodology paper plus reproducible artifact set proving fixity-first preservation in a post-LLM world.

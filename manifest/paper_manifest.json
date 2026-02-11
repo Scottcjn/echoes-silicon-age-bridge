@@ -47,8 +47,8 @@
   },
   "project": "echoes-rustchain-bridge",
   "publication_links": {
-    "github_commit": "",
-    "github_repo": "",
+    "github_commit": "https://github.com/Scottcjn/echoes-silicon-age-bridge/commit/258daeebe1c187737900aff1fcc3d648d5f2eaf8",
+    "github_repo": "https://github.com/Scottcjn/echoes-silicon-age-bridge",
     "notes": "Fill publication links after pushing repo."
   },
   "schema_version": 1
