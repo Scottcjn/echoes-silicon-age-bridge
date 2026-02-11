@@ -1,0 +1,55 @@
+{
+  "anchor_record": {
+    "artifacts": [
+      {
+        "mime": "application/pdf",
+        "name": "echoes_silicon_age_paper.pdf",
+        "sha256": "ee931f81aa2e82fed778d1e71d5fa578d8489eff4dec02f423b08bf0601bb28f",
+        "size_bytes": 1595033
+      },
+      {
+        "mime": "image/png",
+        "name": "silicon_stratigraphy_figure.png",
+        "sha256": "599b657faab1e725b1069b467092e13b3029068bfc303a28cf7ebdc0cafae7fe",
+        "size_bytes": 1442786
+      }
+    ],
+    "author": "Scott J. Boudreaux",
+    "generated_at": "2026-02-11T15:01:30+00:00",
+    "title": "Echoes from the Silicon Age: A Provenance-First Framework for Preserving Pre-LLM Digital Artifacts"
+  },
+  "anchor_record_sha256": "763751fcea25e03c224ab5095d88ed8d4837b5adf0d28c1cdac473e8a412cde3",
+  "generated_at": "2026-02-11T15:01:30+00:00",
+  "jcaa_submission": {
+    "corrected_figure_file_id": "8614",
+    "corrected_pdf_file_id": "8615",
+    "submission_id": "273"
+  },
+  "paper": {
+    "artifacts": [
+      {
+        "mime": "application/pdf",
+        "path": "artifacts/echoes_silicon_age_paper.pdf",
+        "role": "manuscript_pdf",
+        "sha256": "ee931f81aa2e82fed778d1e71d5fa578d8489eff4dec02f423b08bf0601bb28f",
+        "size_bytes": 1595033
+      },
+      {
+        "mime": "image/png",
+        "path": "artifacts/silicon_stratigraphy_figure.png",
+        "role": "primary_figure",
+        "sha256": "599b657faab1e725b1069b467092e13b3029068bfc303a28cf7ebdc0cafae7fe",
+        "size_bytes": 1442786
+      }
+    ],
+    "author": "Scott J. Boudreaux",
+    "title": "Echoes from the Silicon Age: A Provenance-First Framework for Preserving Pre-LLM Digital Artifacts"
+  },
+  "project": "echoes-rustchain-bridge",
+  "publication_links": {
+    "github_commit": "",
+    "github_repo": "",
+    "notes": "Fill publication links after pushing repo."
+  },
+  "schema_version": 1
+}

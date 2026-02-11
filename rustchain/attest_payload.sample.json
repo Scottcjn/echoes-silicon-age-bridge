@@ -1,0 +1,22 @@
+{
+  "_notes": {
+    "node_url": "http://50.28.86.131:8099",
+    "safe_default": "This payload is generated but not auto-submitted."
+  },
+  "device": {
+    "device_arch": "archive-bridge",
+    "device_family": "paper",
+    "device_model": "echoes-holding",
+    "serial_number": "echoes-bridge-manual"
+  },
+  "miner": "paper_anchor_echoes_v1",
+  "report": {
+    "commitment": "763751fcea25e03c224ab5095d88ed8d4837b5adf0d28c1cdac473e8a412cde3",
+    "document_type": "academic_manuscript",
+    "manifest_path": "manifest/paper_manifest.json",
+    "manifest_sha256": "3d2993919c5fa88a3e50e146a39fee51fbc5777c69ce75c515781172fefe9e09",
+    "nonce": "paper-2026-02-11T15:01:30+00:00",
+    "paper_title": "Echoes from the Silicon Age: A Provenance-First Framework for Preserving Pre-LLM Digital Artifacts"
+  },
+  "signals": {}
+}
