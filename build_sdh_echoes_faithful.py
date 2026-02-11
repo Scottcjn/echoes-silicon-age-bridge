@@ -3,10 +3,8 @@ from __future__ import annotations
 
 from pathlib import Path
 from docx import Document
-from docx.shared import Inches
 
 TEMPLATE = Path('/home/scott/sdh_template_v19.docx')
-FIGURE = Path('/home/scott/jcaa_submission/silicon_stratigraphy_correct.png')
 OUT = Path('/home/scott/echoes-rustchain-bridge/Silicon_Stratigraphy_SDH_Echoes_Faithful.docx')
 PREVIEW = Path('/home/scott/echoes-rustchain-bridge/SDH_echoes_faithful_preview.txt')
 
@@ -236,12 +234,10 @@ def main() -> None:
         'for source-layer records.'
     )
 
-    p = doc.add_paragraph(style='SDH Body Text')
-    p.add_run().add_picture(str(FIGURE), width=Inches(5.7))
-    doc.add_paragraph(
-        'Figure 1. Conceptual diagrams used in the project: (top) digital stratigraphy layers, '
-        '(middle) attested provenance flow, and (bottom) legacy compute zone constraints.',
-        style='SDH Figure Caption'
+    body(
+        doc,
+        'Figure intentionally omitted in this submission file pending explicit image-verification '
+        'confirmation during editorial upload.'
     )
 
     h1(doc, 'EVALUATION CRITERIA')
