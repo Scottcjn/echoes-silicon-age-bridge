@@ -14,7 +14,7 @@
     "commitment": "763751fcea25e03c224ab5095d88ed8d4837b5adf0d28c1cdac473e8a412cde3",
     "document_type": "academic_manuscript",
     "manifest_path": "manifest/paper_manifest.json",
-    "manifest_sha256": "3d2993919c5fa88a3e50e146a39fee51fbc5777c69ce75c515781172fefe9e09",
+    "manifest_sha256": "73dd96213caad4fe35bf9cdeb5238a60687cb251b30f52966daf2eea421b8015",
     "nonce": "paper-2026-02-11T15:01:30+00:00",
     "paper_title": "Echoes from the Silicon Age: A Provenance-First Framework for Preserving Pre-LLM Digital Artifacts"
   },
