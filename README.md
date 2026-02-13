@@ -44,3 +44,10 @@ git branch -M main
 git remote add origin https://github.com/<your-user>/<repo>.git
 git push -u origin main
 ```
+
+
+## 中文简介
+
+Elyan Labs POWER 项目 - 为 IBM POWER 和复古系统提供现代支持。
+
+Contributed by eelaine-wzw
