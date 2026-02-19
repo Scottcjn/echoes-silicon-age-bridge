@@ -44,3 +44,17 @@ git branch -M main
 git remote add origin https://github.com/<your-user>/<repo>.git
 git push -u origin main
 ```
+
+## JCAA 2026 Package
+
+A full archaeology-focused submission package with reproducible validation and
+RustChain anchoring is included at:
+
+- `jcaa_2026-02-19/`
+
+This includes:
+- updated manuscript (`.tex` + `.pdf`)
+- deterministic and real-LLM validation outputs
+- rerun protocol
+- Grok reviewer packet
+- RustChain attestation payload/response and hash receipt

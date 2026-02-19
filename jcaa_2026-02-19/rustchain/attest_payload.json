@@ -1,0 +1,22 @@
+{
+  "miner": "paper_anchor_silicon_stratigraphy_v2",
+  "report": {
+    "commitment": "ce5ed968f01f485537a7c21e8a93869d11b35e1455f4d67e1d21765c1467c31e",
+    "nonce": "silicon-stratigraphy-2026-02-19T19:09:43Z",
+    "document_type": "academic_manuscript",
+    "paper_title": "Silicon Stratigraphy for Archaeological Evidence Integrity",
+    "manifest_path": "jcaa_experiments_2026-02-19/rustchain_anchor_2026-02-19/files.sha256",
+    "manifest_sha256": "ce5ed968f01f485537a7c21e8a93869d11b35e1455f4d67e1d21765c1467c31e"
+  },
+  "device": {
+    "device_family": "paper",
+    "device_arch": "archive-bridge",
+    "device_model": "silicon-stratigraphy-jcaa",
+    "serial_number": "jcaa-2026-02-19"
+  },
+  "signals": {
+    "dataset_total_records": 687,
+    "llm_sample_total_records": 36,
+    "llm_model": "qwen2.5-coder:1.5b"
+  }
+}

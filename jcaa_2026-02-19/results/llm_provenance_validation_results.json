@@ -1,0 +1,236 @@
+{
+  "generated_at": "2026-02-19T19:06:17+00:00",
+  "started_at": "2026-02-19T19:04:17+00:00",
+  "total_runtime_seconds": 119.9415,
+  "ollama_url": "http://127.0.0.1:11434/api/generate",
+  "model": "qwen2.5-coder:1.5b",
+  "sample_per_stream": 12,
+  "stream_count": 3,
+  "total_records": 36,
+  "total_llm_calls": 72,
+  "streams": [
+    {
+      "stream_name": "nyc_archaeology_reports",
+      "record_count": 12,
+      "mandatory_fields": [
+        "biblioid",
+        "borough",
+        "author",
+        "date",
+        "title"
+      ],
+      "llm_model": "qwen2.5-coder:1.5b",
+      "llm_calls": 24,
+      "timing": {
+        "llm_seconds": 49.4524,
+        "seconds_per_record_pair": 4.121
+      },
+      "metrics": {
+        "one_hop_naive_lineage_completeness_rate": 0.0,
+        "one_hop_provenance_lineage_completeness_rate": 1.0,
+        "one_hop_naive_context_retention_avg": 0.0,
+        "one_hop_provenance_context_retention_avg": 1.0,
+        "one_hop_provenance_audit_pass_rate": 1.0,
+        "two_hop_naive_lineage_completeness_rate": 0.0,
+        "two_hop_provenance_lineage_completeness_rate": 1.0,
+        "two_hop_provenance_chain_audit_pass_rate": 1.0
+      },
+      "two_hop_audit_failure_scenarios": [
+        {
+          "scenario": "two_hop_baseline_provenance",
+          "injected_count": 0,
+          "failed_count": 0,
+          "audit_pass_rate": 1.0,
+          "audit_fail_rate": 0.0,
+          "detection_recall": null,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_orphan_parent_link",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_ancestor_mismatch",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_context_erasure",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_generated_label_stripped",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        }
+      ]
+    },
+    {
+      "stream_name": "cleveland_museum_ancient_collections",
+      "record_count": 12,
+      "mandatory_fields": [
+        "objectID",
+        "department",
+        "title",
+        "culture",
+        "objectDate",
+        "accessionNumber"
+      ],
+      "llm_model": "qwen2.5-coder:1.5b",
+      "llm_calls": 24,
+      "timing": {
+        "llm_seconds": 38.414,
+        "seconds_per_record_pair": 3.2012
+      },
+      "metrics": {
+        "one_hop_naive_lineage_completeness_rate": 0.0,
+        "one_hop_provenance_lineage_completeness_rate": 1.0,
+        "one_hop_naive_context_retention_avg": 0.0,
+        "one_hop_provenance_context_retention_avg": 1.0,
+        "one_hop_provenance_audit_pass_rate": 1.0,
+        "two_hop_naive_lineage_completeness_rate": 0.0,
+        "two_hop_provenance_lineage_completeness_rate": 1.0,
+        "two_hop_provenance_chain_audit_pass_rate": 1.0
+      },
+      "two_hop_audit_failure_scenarios": [
+        {
+          "scenario": "two_hop_baseline_provenance",
+          "injected_count": 0,
+          "failed_count": 0,
+          "audit_pass_rate": 1.0,
+          "audit_fail_rate": 0.0,
+          "detection_recall": null,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_orphan_parent_link",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_ancestor_mismatch",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_context_erasure",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_generated_label_stripped",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        }
+      ]
+    },
+    {
+      "stream_name": "aic_ancient_collections",
+      "record_count": 12,
+      "mandatory_fields": [
+        "id",
+        "title",
+        "date_display",
+        "place_of_origin",
+        "main_reference_number"
+      ],
+      "llm_model": "qwen2.5-coder:1.5b",
+      "llm_calls": 24,
+      "timing": {
+        "llm_seconds": 32.0713,
+        "seconds_per_record_pair": 2.6726
+      },
+      "metrics": {
+        "one_hop_naive_lineage_completeness_rate": 0.0,
+        "one_hop_provenance_lineage_completeness_rate": 1.0,
+        "one_hop_naive_context_retention_avg": 0.0,
+        "one_hop_provenance_context_retention_avg": 1.0,
+        "one_hop_provenance_audit_pass_rate": 1.0,
+        "two_hop_naive_lineage_completeness_rate": 0.0,
+        "two_hop_provenance_lineage_completeness_rate": 1.0,
+        "two_hop_provenance_chain_audit_pass_rate": 1.0
+      },
+      "two_hop_audit_failure_scenarios": [
+        {
+          "scenario": "two_hop_baseline_provenance",
+          "injected_count": 0,
+          "failed_count": 0,
+          "audit_pass_rate": 1.0,
+          "audit_fail_rate": 0.0,
+          "detection_recall": null,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_orphan_parent_link",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_ancestor_mismatch",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_context_erasure",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "two_hop_generated_label_stripped",
+          "injected_count": 2,
+          "failed_count": 2,
+          "audit_pass_rate": 0.8333333333333334,
+          "audit_fail_rate": 0.16666666666666666,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        }
+      ]
+    }
+  ]
+}

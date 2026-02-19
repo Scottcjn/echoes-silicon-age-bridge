@@ -1,0 +1,253 @@
+{
+  "generated_at": "2026-02-19T18:46:21+00:00",
+  "started_at": "2026-02-19T18:46:15+00:00",
+  "total_runtime_seconds": 5.8808,
+  "stream_count": 3,
+  "total_records": 687,
+  "streams": [
+    {
+      "stream_name": "nyc_archaeology_reports",
+      "source_url": "https://data.cityofnewyork.us/resource/fuzb-9jre.json",
+      "record_count": 300,
+      "mandatory_fields": [
+        "biblioid",
+        "borough",
+        "author",
+        "date",
+        "title"
+      ],
+      "timing": {
+        "fetch_seconds": 1.1725,
+        "validate_seconds": 0.0188
+      },
+      "metrics": {
+        "fixity_stability_rate": 1.0,
+        "naive_context_retention_avg": 0.0,
+        "provenance_context_retention_avg": 0.9993333333333334,
+        "naive_source_distinguishability_rate": 0.0,
+        "provenance_source_distinguishability_rate": 1.0,
+        "naive_lineage_completeness_rate": 0.0,
+        "provenance_lineage_completeness_rate": 1.0,
+        "naive_disclosure_label_rate": 0.0,
+        "provenance_disclosure_label_rate": 1.0,
+        "provenance_reproducible_root_hash": true,
+        "tamper_detection_recall": 1.0,
+        "tamper_detection_false_positive_rate": 0.0,
+        "lineage_break_detection_recall": 1.0,
+        "lineage_break_detection_false_positive_rate": 0.0,
+        "parent_mismatch_detection_recall": 1.0,
+        "parent_mismatch_detection_false_positive_rate": 0.0
+      },
+      "audit_failure_scenarios": [
+        {
+          "scenario": "baseline_provenance",
+          "injected_count": 0,
+          "failed_count": 0,
+          "audit_pass_rate": 1.0,
+          "audit_fail_rate": 0.0,
+          "detection_recall": null,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "orphan_parent_link",
+          "injected_count": 30,
+          "failed_count": 30,
+          "audit_pass_rate": 0.9,
+          "audit_fail_rate": 0.1,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "missing_generated_by",
+          "injected_count": 30,
+          "failed_count": 30,
+          "audit_pass_rate": 0.9,
+          "audit_fail_rate": 0.1,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "mandatory_context_erasure",
+          "injected_count": 30,
+          "failed_count": 30,
+          "audit_pass_rate": 0.9,
+          "audit_fail_rate": 0.1,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "generated_label_stripped",
+          "injected_count": 30,
+          "failed_count": 30,
+          "audit_pass_rate": 0.9,
+          "audit_fail_rate": 0.1,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        }
+      ]
+    },
+    {
+      "stream_name": "cleveland_museum_ancient_collections",
+      "source_url": "https://openaccess-api.clevelandart.org/api/artworks/",
+      "record_count": 196,
+      "mandatory_fields": [
+        "objectID",
+        "department",
+        "title",
+        "culture",
+        "objectDate",
+        "accessionNumber"
+      ],
+      "timing": {
+        "fetch_seconds": 4.5133,
+        "validate_seconds": 0.0115
+      },
+      "metrics": {
+        "fixity_stability_rate": 1.0,
+        "naive_context_retention_avg": 0.0,
+        "provenance_context_retention_avg": 1.0,
+        "naive_source_distinguishability_rate": 0.0,
+        "provenance_source_distinguishability_rate": 1.0,
+        "naive_lineage_completeness_rate": 0.0,
+        "provenance_lineage_completeness_rate": 1.0,
+        "naive_disclosure_label_rate": 0.0,
+        "provenance_disclosure_label_rate": 1.0,
+        "provenance_reproducible_root_hash": true,
+        "tamper_detection_recall": 1.0,
+        "tamper_detection_false_positive_rate": 0.0,
+        "lineage_break_detection_recall": 1.0,
+        "lineage_break_detection_false_positive_rate": 0.0,
+        "parent_mismatch_detection_recall": 1.0,
+        "parent_mismatch_detection_false_positive_rate": 0.0
+      },
+      "audit_failure_scenarios": [
+        {
+          "scenario": "baseline_provenance",
+          "injected_count": 0,
+          "failed_count": 0,
+          "audit_pass_rate": 1.0,
+          "audit_fail_rate": 0.0,
+          "detection_recall": null,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "orphan_parent_link",
+          "injected_count": 19,
+          "failed_count": 19,
+          "audit_pass_rate": 0.9030612244897959,
+          "audit_fail_rate": 0.09693877551020408,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "missing_generated_by",
+          "injected_count": 19,
+          "failed_count": 19,
+          "audit_pass_rate": 0.9030612244897959,
+          "audit_fail_rate": 0.09693877551020408,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "mandatory_context_erasure",
+          "injected_count": 19,
+          "failed_count": 19,
+          "audit_pass_rate": 0.9030612244897959,
+          "audit_fail_rate": 0.09693877551020408,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "generated_label_stripped",
+          "injected_count": 19,
+          "failed_count": 19,
+          "audit_pass_rate": 0.9030612244897959,
+          "audit_fail_rate": 0.09693877551020408,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        }
+      ]
+    },
+    {
+      "stream_name": "aic_ancient_collections",
+      "source_url": "https://api.artic.edu/api/v1/artworks/search",
+      "record_count": 191,
+      "mandatory_fields": [
+        "id",
+        "title",
+        "date_display",
+        "place_of_origin",
+        "main_reference_number"
+      ],
+      "timing": {
+        "fetch_seconds": 0.1511,
+        "validate_seconds": 0.0092
+      },
+      "metrics": {
+        "fixity_stability_rate": 1.0,
+        "naive_context_retention_avg": 0.0,
+        "provenance_context_retention_avg": 1.0,
+        "naive_source_distinguishability_rate": 0.0,
+        "provenance_source_distinguishability_rate": 1.0,
+        "naive_lineage_completeness_rate": 0.0,
+        "provenance_lineage_completeness_rate": 1.0,
+        "naive_disclosure_label_rate": 0.0,
+        "provenance_disclosure_label_rate": 1.0,
+        "provenance_reproducible_root_hash": true,
+        "tamper_detection_recall": 1.0,
+        "tamper_detection_false_positive_rate": 0.0,
+        "lineage_break_detection_recall": 1.0,
+        "lineage_break_detection_false_positive_rate": 0.0,
+        "parent_mismatch_detection_recall": 1.0,
+        "parent_mismatch_detection_false_positive_rate": 0.0
+      },
+      "audit_failure_scenarios": [
+        {
+          "scenario": "baseline_provenance",
+          "injected_count": 0,
+          "failed_count": 0,
+          "audit_pass_rate": 1.0,
+          "audit_fail_rate": 0.0,
+          "detection_recall": null,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "orphan_parent_link",
+          "injected_count": 19,
+          "failed_count": 19,
+          "audit_pass_rate": 0.900523560209424,
+          "audit_fail_rate": 0.09947643979057591,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "missing_generated_by",
+          "injected_count": 19,
+          "failed_count": 19,
+          "audit_pass_rate": 0.900523560209424,
+          "audit_fail_rate": 0.09947643979057591,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "mandatory_context_erasure",
+          "injected_count": 19,
+          "failed_count": 19,
+          "audit_pass_rate": 0.900523560209424,
+          "audit_fail_rate": 0.09947643979057591,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        {
+          "scenario": "generated_label_stripped",
+          "injected_count": 19,
+          "failed_count": 19,
+          "audit_pass_rate": 0.900523560209424,
+          "audit_fail_rate": 0.09947643979057591,
+          "detection_recall": 1.0,
+          "false_positive_rate": 0.0
+        }
+      ]
+    }
+  ]
+}
