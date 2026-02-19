@@ -10,8 +10,9 @@
 \usepackage{longtable}
 \usepackage{array}
 \onehalfspacing
+\setlength{\emergencystretch}{2em}
 
-\title{Silicon Stratigraphy for Archaeological Evidence Integrity:\\A Provenance-First Framework for AI-Mediated Digital Workflows}
+\title{Silicon Stratigraphy:\\Preserving Digital Layers in AI-Assisted Archaeological Research}
 \author{Scott J. Boudreaux\\Elyan Labs, Louisiana, USA\\\texttt{scott@elyanlabs.ai}}
 \date{February 2026}
 
@@ -19,17 +20,19 @@
 \maketitle
 
 \begin{abstract}
-Archaeological research increasingly depends on digital records that are transformed through AI-assisted workflows. This creates a direct interpretive risk: derivative outputs can circulate without enough provenance to verify what evidence they came from or how they were altered. This paper presents a full archaeology-focused formulation of \textit{Silicon Stratigraphy}, a provenance-first framework for preserving evidentiary integrity across excavation records, museum documentation, and field-to-public digital pipelines. The framework combines OAIS-aligned preservation practice, Memento time-state capture, PROV-O lineage modeling, and cryptographic fixity and timestamp anchoring. The contribution is practical and methodological: an implementable workflow for distinguishing source evidence from AI-mediated derivatives, plus archaeology-specific evaluation criteria for interpretive fidelity and reproducibility. The paper provides a case-study structure for immediate use in resubmission and peer review, with explicit reporting fields for dataset scope, transformation provenance, and decision-level interpretive impact.
+Archaeologists today routinely work with thousands of born-digital excavation reports and open museum collections. Yet every time we ask an AI tool to summarize or interpret these data, the digital equivalent of stratigraphic layers can be erased: we can no longer tell which sentence came from which original source, when it was created, or whether it has been altered. This paper introduces \textit{Silicon Stratigraphy}, a lightweight provenance-first workflow that automatically preserves source/derivative boundaries, auditable lineage, fixity, and disclosure controls on real archaeology-relevant data streams.
+
+We demonstrate the workflow on three live public endpoints (NYC Archaeology Reports Database, Cleveland Museum of Art Open Access API, and Art Institute of Chicago API), processing 687 records in deterministic mode and 36 records (72 LLM calls) in real-LLM mode using Qwen 2.5 Coder (1.5B). Provenance mode achieved perfect fixity, lineage completeness, and audit detection across both deterministic and stochastic transformations, while naive summarization retained zero explicit provenance. The method is offered as a practical, reproducible tool for archaeologists who need trustworthy AI-assisted analysis.
 \end{abstract}
 
 \noindent\textbf{Keywords:} digital archaeology; archaeological method; provenance; evidentiary integrity; reproducibility; generative AI; digital heritage
 
 \section{Introduction}
-Archaeologists now work in digital environments where core evidence is often accessed, summarized, translated, and re-presented through software pipelines. Excavation logs, artifact catalogues, archival imagery, geospatial exports, and project databases are routinely transformed before interpretation and publication. Recent AI tooling accelerates this process, but it also increases the chance that derivative outputs become detached from the source evidence that originally supported archaeological claims.
+On an archaeological excavation, every layer of soil is carefully labeled so future researchers can trace a single artifact back to its exact context. The same principle now applies to the digital records we rely on: excavation reports, museum APIs, and open repositories. When archaeologists use large language models or other AI tools to summarize these records at scale, outputs often return as clean prose with no visible connection to source evidence.
 
-The core concern is methodological rather than rhetorical: if source and derivative layers are not explicitly separated, provenance failure can silently alter interpretation. In physical archaeology, context loss is a foundational warning. In digital archaeology, undocumented transformation is the parallel risk.
+Silicon Stratigraphy is a lightweight provenance-first workflow designed to prevent that loss. It attaches four explicit metadata fields to each derivative record (\emph{generated\_label}, \emph{generated\_by}, \emph{generated\_at}, and \emph{parent\_sha256}) while preserving mandatory context fields from the original stream. The result is a digital stratigraphy that remains auditable after transformation.
 
-This paper addresses that risk directly within standard archaeological research settings. It reframes provenance-first preservation not as an abstract digital-heritage objective but as a practical requirement for archaeological interpretation under AI-mediated workflows.
+This paper addresses the problem as a methodological requirement for archaeological interpretation, not as an abstract digital-heritage objective.
 
 \section{Archaeological Research Questions}
 The manuscript addresses three archaeology-led research questions:
@@ -49,7 +52,7 @@ The framework builds on established standards and reproducibility literature:
 \item \textbf{OAIS} defines ingest, archival storage, data management, and dissemination responsibilities for long-term digital preservation \cite{oais}.
 \item \textbf{Memento (RFC 7089)} supports datetime-based retrieval of prior web resource states, which is critical for time-specific archaeological citation \cite{memento}.
 \item \textbf{PROV-O} provides a machine-readable model for entities, activities, and agents in transformation lineages \cite{provo}.
-\item \textbf{Archaeological open-data and reproducibility work} emphasizes inspectable workflows and rerunnable evidence paths \cite{kansa2012, marwick2017}.
+\item \textbf{Archaeological open-data and reproducibility work} emphasizes inspectable and rerunnable evidence paths \cite{kansa2012, marwick2017}.
 \item \textbf{AI governance guidance} emphasizes transparency, accountability, and risk management in automated systems \cite{unesco, nist}.
 \end{enumerate}
 
@@ -74,7 +77,7 @@ To match archaeology-focused scope, this manuscript defines and executes three c
 \textbf{Primary risk}: AI enhancement or metadata generation can introduce stylistic certainty or object traits not present in primary records.\\
 \textbf{Required reporting fields}:
 \begin{itemize}
-\item Institution/collection: Cleveland Museum of Art Open Access API (\url{https://openaccess-api.clevelandart.org/api/artworks/}).
+\item Institution/collection: Cleveland Museum of Art Open Access API. Endpoint: \url{https://openaccess-api.clevelandart.org/api/artworks/}.
 \item Object classes sampled: 196 deduplicated records queried from ancient-relevant terms (\texttt{roman}, \texttt{egyptian}); sampled departments included Greek and Roman Art and Egyptian and Ancient Near Eastern Art, with additional records returned by API indexing.
 \item Image/metadata transformations audited: source metadata to summary-only derivative (naive mode) versus provenance-first derivative preserving mandatory context keys (\texttt{objectID}, \texttt{department}, \texttt{title}, \texttt{culture}, \texttt{objectDate}, \texttt{accessionNumber}).
 \item Validation protocol in this run: machine-auditable metadata retention and lineage checks; no institution-side curatorial adjudication was claimed for this experiment.
@@ -88,7 +91,7 @@ To match archaeology-focused scope, this manuscript defines and executes three c
 \item Field project or portal: Art Institute of Chicago public API search endpoint (\url{https://api.artic.edu/api/v1/artworks/search}).
 \item Data products evaluated: 191 deduplicated records from roman/egyptian queries using fields \texttt{id}, \texttt{title}, \texttt{date\_display}, \texttt{place\_of\_origin}, and \texttt{main\_reference\_number}.
 \item AI-mediated layers generated in this experiment: deterministic derivative summaries for each sampled record to emulate accelerated interpretation outputs.
-\item Disclosure and audit interface: explicit derivative labeling (\texttt{generated\_label}), parent linkage (\texttt{parent\_sha256}), and run-level reports in \texttt{extended\_provenance\_validation\_report.md}.
+\item Disclosure and audit interface: explicit derivative labeling (\texttt{generated\_label}), parent linkage (\texttt{parent\_sha256}), and run-level supplementary reporting.
 \end{itemize}
 
 \subsection{Data Governance Across All Case Streams}
@@ -112,17 +115,17 @@ The method adapts archaeological stratigraphic logic to digital evidence:
 \end{enumerate}
 
 \subsection{Preservation Invariants}
-Each evidence object requires five invariants:
+Each evidence object is documented using five practical invariants:
 \begin{enumerate}
 \item byte-level artifact package,
 \item SHA-256 digest and file metadata,
 \item trusted timestamp anchor,
-\item execution-context metadata (software/toolchain, model/version where relevant),
+\item execution-context metadata (software toolchain and model/version where relevant),
 \item lineage edges linking parent and derivative objects.
 \end{enumerate}
 
 \subsection{Operational Pipeline}
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Silicon Stratigraphy operational pipeline for archaeological records}
 \label{tab:pipeline}
@@ -165,21 +168,27 @@ Reproducibility & Independent team ability to reconstruct claim-to-source pathwa
 Projects should define pass thresholds per criterion before deployment and report exceptions explicitly.
 
 \section{Experiment Execution and Results}
-Three streams were executed with live retrieval and deterministic reproducibility controls. Full machine-readable outputs are archived in:
+Three streams were executed with live retrieval and deterministic reproducibility controls. Full machine-readable outputs are archived in the supplementary materials and at the project repository:
+\begin{center}
+\url{https://github.com/Scottcjn/echoes-silicon-age-bridge}
+\end{center}
+\noindent commit \texttt{0c1bf0f}.
 \begin{itemize}
-\item \texttt{/home/scott/jcaa\_experiments\_2026-02-19/results/extended\_provenance\_validation\_results.json}
-\item \texttt{/home/scott/jcaa\_experiments\_2026-02-19/results/extended\_provenance\_validation\_report.md}
+\item \texttt{extended\_provenance\_validation\_results.json}
+\item \texttt{extended\_provenance\_validation\_report.md}
 \end{itemize}
 
 The total evaluated corpus in the extended run was 687 records (300 NYC archaeology-report records, 196 Cleveland Museum records, 191 Art Institute of Chicago records). Table \ref{tab:results} summarizes key measured outcomes comparing a naive derivative mode against a provenance-first mode.
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Measured outcomes from the 2026-02-19 extended validation run}
 \label{tab:results}
-\begin{tabular}{p{0.25\textwidth}p{0.08\textwidth}p{0.12\textwidth}p{0.12\textwidth}p{0.12\textwidth}p{0.12\textwidth}}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{0.23\textwidth}p{0.10\textwidth}p{0.11\textwidth}p{0.11\textwidth}p{0.11\textwidth}p{0.11\textwidth}}
 \toprule
-\textbf{Stream} & \textbf{Records} & \textbf{Fixity Stability} & \textbf{Context Retention (Prov)} & \textbf{Lineage Completeness (Prov)} & \textbf{Tamper Recall} \\
+\textbf{Stream} & \textbf{Records} & \textbf{Fixity Stability} & \textbf{Context (Prov)} & \textbf{Lineage (Prov)} & \textbf{Tamper Recall} \\
 \midrule
 NYC archaeology reports & 300 & 1.000 & 0.999 & 1.000 & 1.000 \\
 Cleveland museum records & 196 & 1.000 & 1.000 & 1.000 & 1.000 \\
@@ -199,15 +208,17 @@ Across all three streams in the extended run, provenance-first mode produced:
 In contrast, the naive mode produced zero explicit parent linkage and zero lineage completeness in this run, demonstrating the specific interpretive risk addressed by the framework.
 
 \subsection{Real-LLM Single-Hop and Multi-Hop Validation}
-To address reviewer concern that deterministic transforms may not represent live model behavior, a separate run executed real LLM transforms using a local Ollama endpoint (\url{http://127.0.0.1:11434/api/generate}) and model \texttt{qwen2.5-coder:1.5b} with CPU-forced options (\texttt{num\_gpu=0}). This run used 12 sampled records per stream (36 total) across the same three archaeology-relevant source snapshots, with 72 total LLM calls.
+To address reviewer concern that deterministic transforms may not represent live model behavior, a separate run executed real LLM transforms using a local Ollama endpoint (\url{http://127.0.0.1:11434/api/generate}) and model \texttt{Qwen 2.5 Coder (1.5B)} with CPU-forced options (\texttt{num\_gpu=0}). This run used 12 sampled records per stream (36 total) across the same three archaeology-relevant source snapshots, with 72 total LLM calls.
 
 One-hop mode generated an LLM summary directly from source records. Two-hop mode generated a second LLM interpretation from hop-1 summaries. Naive variants omitted lineage metadata; provenance-first variants attached \texttt{generated\_label}, \texttt{generated\_by}, \texttt{generated\_at}, and parent linkage plus mandatory context fields.
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Real-LLM one-hop and two-hop lineage outcomes (2026-02-19 run)}
 \label{tab:llmresults}
-\begin{tabular}{p{0.29\textwidth}p{0.09\textwidth}p{0.12\textwidth}p{0.12\textwidth}p{0.12\textwidth}p{0.12\textwidth}}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{0.26\textwidth}p{0.10\textwidth}p{0.12\textwidth}p{0.12\textwidth}p{0.12\textwidth}p{0.12\textwidth}}
 \toprule
 \textbf{Stream} & \textbf{Records} & \textbf{1-Hop Naive Lineage} & \textbf{1-Hop Prov Audit Pass} & \textbf{2-Hop Naive Lineage} & \textbf{2-Hop Prov Chain Pass} \\
 \midrule
@@ -220,13 +231,22 @@ AIC museum records & 12 & 0.000 & 1.000 & 0.000 & 1.000 \\
 
 Additional two-hop fault injections (20\% records per stream) tested orphan parent links, ancestor mismatch, mandatory context erasure, and generated-label stripping. Baseline two-hop provenance had fail rate 0.000; injected scenarios had fail rate 0.167 with detection recall 1.000 and false positive rate 0.000 in all streams.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{silicon-stratigraphy-workflow-comparison.pdf}
+\caption{Workflow comparison. \textbf{Top:} Naive AI summarisation detaches claims from source context and removes auditability (digital equivalent of mixed, unlabelled backfill). \textbf{Bottom:} Silicon Stratigraphy preserves clear digital layers with timestamps, generated-content labeling, and cryptographic parent linkage, allowing full traceability exactly as we do with physical stratigraphy on site.}
+\label{fig:workflow}
+\end{figure}
+
 \section{Audit Failure Proof-of-Concept}
 To demonstrate that the audit layer fails records when provenance constraints are broken, four additional fault scenarios were injected into provenance-mode derivatives (10\% of records per stream): orphan parent link, missing \texttt{generated\_by}, mandatory context erasure, and stripped \texttt{generated\_label}.
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \caption{Injected audit-failure scenarios and observed audit outcomes}
 \label{tab:auditfails}
+\small
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{p{0.30\textwidth}p{0.14\textwidth}p{0.16\textwidth}p{0.14\textwidth}p{0.14\textwidth}}
 \toprule
 \textbf{Scenario} & \textbf{Injection Fraction} & \textbf{Observed Fail Rate Range} & \textbf{Recall Range} & \textbf{FP Range} \\
@@ -248,12 +268,12 @@ The validation can be independently rerun with the following protocol:
 \item Ensure \texttt{python3} and the \texttt{requests} package are available.
 \item Execute:
 \begin{verbatim}
-python3 /home/scott/jcaa_experiments_2026-02-19/scripts/run_provenance_extended_validation.py
+python3 run_provenance_extended_validation.py
 \end{verbatim}
 \item Verify output files:
 \begin{verbatim}
-/home/scott/jcaa_experiments_2026-02-19/results/extended_provenance_validation_results.json
-/home/scott/jcaa_experiments_2026-02-19/results/extended_provenance_validation_report.md
+results/extended_provenance_validation_results.json
+results/extended_provenance_validation_report.md
 \end{verbatim}
 \item Confirm key expectations in the report:
 \begin{verbatim}
@@ -276,7 +296,7 @@ For each case stream (A-C), report the following:
 \item remaining uncertainty and unresolved provenance gaps.
 \end{enumerate}
 
-This structure keeps results archaeologically interpretable and comparable across projects.
+This structure keeps results comparable across projects while remaining archaeologically interpretable.
 
 \section{Pilot Implementation Note}
 A working implementation accompanies this manuscript as a proof of deployability. The implementation demonstrates:
@@ -292,6 +312,8 @@ The implementation is presented as procedural evidence that the framework is pra
 
 \section{Discussion}
 The findings of this methods study support three practical points for archaeology:
+
+As a field-style example, a derivative sentence such as ``Beads of Dutch origin appear frequently in Lower Manhattan contexts'' is only methodologically useful when it carries explicit provenance tags linking back to the source record and generation event. Under Silicon Stratigraphy, that sentence remains connected to its parent record via \texttt{parent\_sha256}, includes machine-generation disclosure fields, and can be audited back to the original report record before interpretive reuse.
 
 \begin{enumerate}
 \item \textbf{AI use can remain methodologically acceptable} when provenance boundaries are explicit and auditable.
@@ -320,12 +342,19 @@ The framework is intended for immediate application in excavation archives, muse
 The author leads some implementation infrastructure discussed as procedural demonstration. This manuscript is submitted as a methods contribution focused on archaeological workflow integrity.
 
 \section*{Data and Materials Availability}
-The implementation package includes manuscript artifacts, manifests, and hash records intended for independent verification. This revision also includes reproducible experiment scripts and outputs in \texttt{/home/scott/jcaa\_experiments\_2026-02-19/}. Source endpoints used in the run were:
+The implementation package includes manuscript artifacts, manifests, and hash records intended for independent verification. This revision also includes reproducible experiment scripts and outputs archived in the supplementary materials and at:
+\begin{center}
+\url{https://github.com/Scottcjn/echoes-silicon-age-bridge}
+\end{center}
+\noindent commit \texttt{0c1bf0f}. Source endpoints used in the run were:
 \begin{enumerate}
-\item NYC Archaeology Reports endpoint: \url{https://data.cityofnewyork.us/resource/fuzb-9jre.json}
-\item Cleveland Museum of Art Open Access endpoint: \url{https://openaccess-api.clevelandart.org/api/artworks/}
-\item Art Institute of Chicago API endpoint: \url{https://api.artic.edu/api/v1/artworks/search}
-\item Real-LLM validation outputs: \texttt{/home/scott/jcaa\_experiments\_2026-02-19/results/llm\_provenance\_validation\_results.json} and \texttt{/home/scott/jcaa\_experiments\_2026-02-19/results/llm\_provenance\_validation\_report.md}
+\item NYC Archaeology Reports endpoint:\\
+\url{https://data.cityofnewyork.us/resource/fuzb-9jre.json}
+\item Cleveland Museum of Art Open Access endpoint:\\
+\url{https://openaccess-api.clevelandart.org/api/artworks/}
+\item Art Institute of Chicago API endpoint:\\
+\url{https://api.artic.edu/api/v1/artworks/search}
+\item Real-LLM validation outputs: supplementary results JSON and report Markdown files for the 2026-02-19 run.
 \end{enumerate}
 
 \begin{thebibliography}{99}
