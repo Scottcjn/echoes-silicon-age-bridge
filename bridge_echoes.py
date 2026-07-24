@@ -157,7 +157,21 @@ def write_hashes_file(path: Path, paper: Artifact, figure: Artifact, manifest_sh
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def write_attest_payload(path: Path, manifest: dict[str, Any], miner_id: str, node_url: str) -> None:
+def write_attest_payload(
+    path: Path,
+    manifest: dict[str, Any],
+    miner_id: str,
+    node_url: str,
+    manifest_sha256: str,
+) -> None:
+    """Write the attestation payload.
+
+    `manifest_sha256` must be the digest of `manifest/paper_manifest.json` as
+    written to disk (see `sha256_file`), because that is the file the payload
+    names in `manifest_path` and the digest `manifest/hashes.sha256` lists for
+    it. Hashing an in-memory re-serialization instead yields a digest that no
+    published file has, so the attestation cannot be checked against anything.
+    """
     payload = {
         "miner": miner_id,
         "report": {
@@ -166,7 +180,7 @@ def write_attest_payload(path: Path, manifest: dict[str, Any], miner_id: str, no
             "document_type": "academic_manuscript",
             "paper_title": manifest["paper"]["title"],
             "manifest_path": "manifest/paper_manifest.json",
-            "manifest_sha256": sha256_text(json.dumps(manifest, sort_keys=True)),
+            "manifest_sha256": manifest_sha256,
         },
         "device": {
             "device_family": "paper",
@@ -280,6 +294,7 @@ def cmd_prepare(args: argparse.Namespace) -> int:
         manifest,
         miner_id=args.miner_id,
         node_url=args.node_url,
+        manifest_sha256=manifest_sha256,
     )
     write_submit_script(rustchain_dir / "submit_attestation.sh", args.node_url)
     write_grok_inputs(workspace / "grok_article_inputs.md", manifest, args.node_url)
