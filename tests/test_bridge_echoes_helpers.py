@@ -98,11 +98,20 @@ def test_write_hashes_file_and_attest_payload_use_manifest_digest(tmp_path):
     ]
 
     payload_path = tmp_path / "rustchain" / "attest_payload.sample.json"
-    write_attest_payload(payload_path, manifest, miner_id="miner-test", node_url="http://node.test")
+    write_attest_payload(
+        payload_path,
+        manifest,
+        miner_id="miner-test",
+        node_url="http://node.test",
+        manifest_sha256="d" * 64,
+    )
     payload = json.loads(payload_path.read_text(encoding="utf-8"))
     assert payload["miner"] == "miner-test"
     assert payload["report"]["commitment"] == "c" * 64
-    assert payload["report"]["manifest_sha256"] == sha256_text(json.dumps(manifest, sort_keys=True))
+    # The payload names manifest/paper_manifest.json, so its digest is the one
+    # hashes.sha256 lists for that file - not a re-serialization of the dict.
+    assert payload["report"]["manifest_sha256"] == "d" * 64
+    assert payload["report"]["manifest_sha256"] != sha256_text(json.dumps(manifest, sort_keys=True))
     assert payload["_notes"]["node_url"] == "http://node.test"
 
 
